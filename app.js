@@ -15,8 +15,15 @@ client.on("error", function(err) {
 });
 
 const app = express();
+//loger
+const loger = function(req, res, next) {
+        const url = req.url
+        client.setex(url, 3600, url);
 
-// Set response
+        console.log(req.url);
+        next()
+    }
+    // Set response
 function setResponse(username, repos) {
     return `<h2>${username} has ${repos} Github repos</h2>`;
 }
@@ -59,7 +66,7 @@ function cache(req, res, next) {
     });
 }
 
-app.get('/repos/:username', cache, getRepos);
+app.get('/repos/:username', loger, cache, getRepos);
 
 app.listen(5000, () => {
     console.log(`App listening on port ${PORT}`);
