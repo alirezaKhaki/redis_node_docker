@@ -29,5 +29,5 @@ services:
       - ./:/app
     environment:
       PORT: 5000
-      REDIS_PORT: redis://cache
+      REDIS_PORT: 6379
     command: ["sh", "-c", "ls && npm i && npm start"]
