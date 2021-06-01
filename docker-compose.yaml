@@ -2,7 +2,8 @@
 version: "3.3"
 
 networks:
-  redisApp: redisApp
+  redisApp:
+    name: redisApp
 
 services:
   redis:
